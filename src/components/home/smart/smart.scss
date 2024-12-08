@@ -1,0 +1,102 @@
+.smart {
+  margin-top: 60px;
+
+  .mySwiper {
+    display: flex;
+    gap: 10px;
+    .swiper-pagination {
+      position: absolute;
+      bottom: 10px;
+      text-align: center;
+
+      .swiper-pagination-bullet {
+        background: #4e8df2;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+      }
+
+      .swiper-pagination-bullet-active {
+        opacity: 1;
+      }
+    }
+
+    .smart_card {
+      width: 254px;
+      height: auto;
+      padding: 25px;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      gap: 30px;
+
+      .smart__img {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+
+        button {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          position: absolute;
+          top: 20px;
+          left: 0;
+          width: 52px;
+          height: 25px;
+          border-radius: 0px 8px 8px 0px;
+          background-color: #fddbc9;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        &:hover button {
+          opacity: 1;
+        }
+      }
+
+      .smart__text {
+        > p {
+          height: 40px;
+          margin-bottom: 20px;
+          font-size: 18px;
+          font-weight: 300;
+          color: #0c0c0c;
+        }
+
+        .prices {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .all__Price {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 14.52px;
+            color: #717171;
+
+            s {
+              color: #e74c3c;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.smart > div {
+  background-color: #063a88;
+  padding: 40px;
+}
+@media (max-width: 995px) {
+  .smart > div {
+    padding: 20px;
+  }
+}
