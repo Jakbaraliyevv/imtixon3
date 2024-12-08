@@ -21,13 +21,13 @@ function Brandes() {
           <img src={bren5} alt="" />
           <img src={bren6} alt="" />
         </div>
-        <div className="brands__bottom">
+        {/* <div className="brands__bottom">
           <div className="text__bottom">
             <h2>SMART WATCH</h2>
             <p>Various designs and brands</p>
             <button>view</button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

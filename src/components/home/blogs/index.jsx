@@ -89,7 +89,7 @@ function Blogs() {
             </div>
           </div>
         </div>
-        <div className="blogs__bottom">
+        {/* <div className="blogs__bottom">
           <div className="bottom__card">
             <img src={blog1} alt="" />
             <p>Latest and Greatest Tech</p>
@@ -106,7 +106,7 @@ function Blogs() {
             <img src={blog4} alt="" />
             <p>24/7 Support</p>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

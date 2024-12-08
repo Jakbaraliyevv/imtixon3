@@ -19,8 +19,8 @@ function Home() {
       <Products />
       <Salares />
       <Brandes />
-      {/* <Blogs /> */}
-      {/* <Footer /> */}
+      <Blogs />
+      <Footer />
     </>
   );
 }
