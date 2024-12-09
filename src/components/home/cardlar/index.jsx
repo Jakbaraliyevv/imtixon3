@@ -58,12 +58,12 @@ function Cardlar() {
             {/* Static Swiper Slides */}
             {data.map((value) => (
               <SwiperSlide key={value.id}>
-                <Link to={`/cards/${value.id}`} className="card">
+                <div className="card">
                   <div className="img">
                     <img src={value.image} alt="Accessories" />
                     <h4>{value.title}</h4>
                   </div>
-                </Link>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>

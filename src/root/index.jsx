@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/home";
 import Korzina from "../pages/shop";
 import UserItem from "../components/userItem";
+import UserPRoduct from "../components/userProduct";
 
 const Root = createBrowserRouter([
   {
@@ -14,8 +15,12 @@ const Root = createBrowserRouter([
   },
 
   {
-    path: "/cards/:id",
+    path: "/products/:id",
     element: <UserItem />,
+  },
+  {
+    path: "/seleres/:id",
+    element: <UserPRoduct />,
   },
 ]);
 

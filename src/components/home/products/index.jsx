@@ -7,6 +7,7 @@ import { faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FaRegHeart } from "react-icons/fa";
 import left from "../../../img/left.png";
 import useAxios from "../../../hooks/useAxios";
+import { Link } from "react-router-dom";
 function Products() {
   const { data, loading, error } = useAxios({ url: "products" });
 
@@ -23,12 +24,12 @@ function Products() {
         <div className="products__middle">
           {data.map((value) => (
             <div className="card" key={value.id}>
-              <div className="card__img">
+              <Link to={`/products/${value.id}`} className="card__img">
                 <img src={value.image} alt="" />
                 <button>
                   <FaRegHeart className="heart" />
                 </button>
-              </div>
+              </Link>
               <div className="card__text">
                 <h3>{value.title}</h3>
                 <div className="reitin">
