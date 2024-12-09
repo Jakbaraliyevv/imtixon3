@@ -3,26 +3,28 @@ import "./header.scss";
 
 // Iconlar
 import { FaBars } from "react-icons/fa";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
 // Imglar
 import shop from "../../../img/bag.svg";
 import user from "../../../img/user.svg";
 import like from "../../../img/heart.svg";
 import logo from "../../../img/logo.svg";
+import { useNavigate } from "react-router-dom";
 function Header() {
-  const [menu, setMenu] = useState(false);
+  const navigate = useNavigate();
 
-  const toogle = () => {
-    console.log("salom");
-    // setMenu(!menu);
+  const navigate_btn = () => {
+    navigate("/shop");
+  };
+
+  const navigate_btn2 = () => {
+    navigate("/");
   };
 
   return (
     <header className="header">
       <div className="container">
         <div className="logo">
-          <img src={logo} alt="" />
+          <img onClick={navigate_btn2} src={logo} alt="" />
         </div>
         <div className="nav__link">
           <ul className="ul">
@@ -47,13 +49,13 @@ function Header() {
           <button>
             <img src={like} alt="" />
           </button>
-          <button>
+          <button onClick={navigate_btn}>
             <img src={shop} alt="" />
           </button>
           <button>
             <img src={user} alt="" />
           </button>
-          <button onClick={toogle}>
+          <button>
             <FaBars className="bars" />
           </button>
         </div>

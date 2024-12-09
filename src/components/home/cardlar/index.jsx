@@ -7,8 +7,15 @@ import "swiper/css/pagination";
 
 import "./card.scss";
 import card1 from "../../../img/card1.png";
+import useAxios from "../../../hooks/useAxios";
 
 function Cardlar() {
+  const { data, loading, error } = useAxios({ url: "cards" });
+
+  const cards = data.find((item) => item.cards)?.cards || [];
+
+  console.log(cards);
+
   return (
     <section className="cardlar">
       <div className="container">
@@ -49,62 +56,16 @@ function Cardlar() {
             }}
           >
             {/* Static Swiper Slides */}
-            <SwiperSlide>
-              <div className="card">
-                <div className="img">
-                  <img src={card1} alt="Accessories" />
-                  <h4>Accessories</h4>
+            {cards.map((value) => (
+              <SwiperSlide key={value.id}>
+                <div className="card">
+                  <div className="img">
+                    <img src={value.image} alt="Accessories" />
+                    <h4>{value.title}</h4>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="card">
-                <div className="img">
-                  <img src={card1} alt="Accessories" />
-                  <h4>Accessories</h4>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="card">
-                <div className="img">
-                  <img src={card1} alt="Accessories" />
-                  <h4>Accessories</h4>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="card">
-                <div className="img">
-                  <img src={card1} alt="Accessories" />
-                  <h4>Accessories</h4>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="card">
-                <div className="img">
-                  <img src={card1} alt="Accessories" />
-                  <h4>Accessories</h4>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="card">
-                <div className="img">
-                  <img src={card1} alt="Accessories" />
-                  <h4>Accessories</h4>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="card">
-                <div className="img">
-                  <img src={card1} alt="Accessories" />
-                  <h4>Accessories</h4>
-                </div>
-              </div>
-            </SwiperSlide>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>
@@ -113,3 +74,52 @@ function Cardlar() {
 }
 
 export default Cardlar;
+
+// <SwiperSlide>
+// <div className="card">
+//   <div className="img">
+//     <img src={card1} alt="Accessories" />
+//     <h4>Accessories</h4>
+//   </div>
+// </div>
+// </SwiperSlide>
+// <SwiperSlide>
+// <div className="card">
+//   <div className="img">
+//     <img src={card1} alt="Accessories" />
+//     <h4>Accessories</h4>
+//   </div>
+// </div>
+// </SwiperSlide>
+// <SwiperSlide>
+// <div className="card">
+//   <div className="img">
+//     <img src={card1} alt="Accessories" />
+//     <h4>Accessories</h4>
+//   </div>
+// </div>
+// </SwiperSlide>
+// <SwiperSlide>
+// <div className="card">
+//   <div className="img">
+//     <img src={card1} alt="Accessories" />
+//     <h4>Accessories</h4>
+//   </div>
+// </div>
+// </SwiperSlide>
+// <SwiperSlide>
+// <div className="card">
+//   <div className="img">
+//     <img src={card1} alt="Accessories" />
+//     <h4>Accessories</h4>
+//   </div>
+// </div>
+// </SwiperSlide>
+// <SwiperSlide>
+// <div className="card">
+//   <div className="img">
+//     <img src={card1} alt="Accessories" />
+//     <h4>Accessories</h4>
+//   </div>
+// </div>
+// </SwiperSlide>

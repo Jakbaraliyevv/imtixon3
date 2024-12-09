@@ -1,3 +1,11 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 29;
+  background-color: #ffff;
+  box-shadow: -2px 2px 15px -1px #7171711f;
+}
+
 .header > div {
   display: flex;
   align-items: center;
