@@ -6,14 +6,14 @@ import useAxios from "../../../hooks/useAxios";
 function Showcase() {
   const { data } = useAxios({ url: "hero" });
 
-  const hero = data.find((item) => item.hero)?.hero || [];
+  // const hero = data.find((item) => item.hero)?.hero || [];
 
-  console.log(hero);
+  // console.log(hero);
 
   return (
     <section className="showcase">
       <div className="container">
-        {hero.map((value) => (
+        {data.map((value) => (
           <div key={value.id} className="showcase__item">
             <div className="showcase__left">
               <div className="showcase__text">

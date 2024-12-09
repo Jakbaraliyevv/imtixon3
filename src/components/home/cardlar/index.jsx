@@ -6,15 +6,15 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import "./card.scss";
-import card1 from "../../../img/card1.png";
 import useAxios from "../../../hooks/useAxios";
+import { Link } from "react-router-dom";
 
 function Cardlar() {
   const { data, loading, error } = useAxios({ url: "cards" });
 
-  const cards = data.find((item) => item.cards)?.cards || [];
+  // const cards = data.find((item) => item.cards)?.cards || [];
 
-  console.log(cards);
+  // console.log(cards);
 
   return (
     <section className="cardlar">
@@ -56,14 +56,14 @@ function Cardlar() {
             }}
           >
             {/* Static Swiper Slides */}
-            {cards.map((value) => (
+            {data.map((value) => (
               <SwiperSlide key={value.id}>
-                <div className="card">
+                <Link to={`/cards/${value.id}`} className="card">
                   <div className="img">
                     <img src={value.image} alt="Accessories" />
                     <h4>{value.title}</h4>
                   </div>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>

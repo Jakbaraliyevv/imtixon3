@@ -6,8 +6,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./smart.scss";
 import img from "../../../img/card1.png";
+import useAxios from "../../../hooks/useAxios";
 
 function Smart() {
+  const { data, loading, error } = useAxios({ url: "smart" });
+  // const smart = data.find((item) => item.smart)?.smart || [];
+
+  // console.log(smart);
+
   return (
     <section className="smart">
       <div className="container">
@@ -41,101 +47,30 @@ function Smart() {
             },
           }}
         >
-          <SwiperSlide>
-            <div className="smart_card">
-              <div className="smart__img">
-                <img src={img} alt="Logitech G502 Gaming Mouse" />
-                <button>
-                  <p>-50%</p>
-                </button>
-              </div>
-              <div className="smart__text">
-                <p>Logitech G502 Gaming Mouse</p>
-                <div className="prices">
-                  <p className="all__Price">
-                    <s>$38.00</s>
-                  </p>
-                  <p className="all__Price">$19.00</p>
+          {data.map((value) => (
+            <SwiperSlide key={value.id}>
+              <div className="smart_card">
+                <div className="smart__img">
+                  <img src={value.image} alt="Logitech G502 Gaming Mouse" />
+                  <button>
+                    <p>{value.chegirma}</p>
+                  </button>
+                </div>
+                <div className="smart__text">
+                  <p>{value.title}</p>
+                  <div className="prices">
+                    <p className="all__Price">
+                      <s>{value.oldPricede}</s>
+                    </p>
+                    <p className="all__Price">
+                      {value.newPrice}
+                      <span>{value.dollar}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="smart_card">
-              <div className="smart__img">
-                <img src={img} alt="NPET K10 Wired Keyboard" />
-                <button>
-                  <p>-30%</p>
-                </button>
-              </div>
-              <div className="smart__text">
-                <p>NPET K10 Wired Gaming Keyboard</p>
-                <div className="prices">
-                  <p className="all__Price">
-                    <s>$49.00</s>
-                  </p>
-                  <p className="all__Price">$34.30</p>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="smart_card">
-              <div className="smart__img">
-                <img src={img} alt="Apple Watch" />
-                <button>
-                  <p>-20%</p>
-                </button>
-              </div>
-              <div className="smart__text">
-                <p>Apple Watch Series 7</p>
-                <div className="prices">
-                  <p className="all__Price">
-                    <s>$289.00</s>
-                  </p>
-                  <p className="all__Price">$231.20</p>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="smart_card">
-              <div className="smart__img">
-                <img src={img} alt="Apple MacBook" />
-                <button>
-                  <p>-25%</p>
-                </button>
-              </div>
-              <div className="smart__text">
-                <p>Apple 2022 MacBook Air M2</p>
-                <div className="prices">
-                  <p className="all__Price">
-                    <s>$950.22</s>
-                  </p>
-                  <p className="all__Price">$712.66</p>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="smart_card">
-              <div className="smart__img">
-                <img src={img} alt="Samsung Watch" />
-                <button>
-                  <p>-17%</p>
-                </button>
-              </div>
-              <div className="smart__text">
-                <p>Samsung Titan Smart Watch</p>
-                <div className="prices">
-                  <p className="all__Price">
-                    <s>$120.00</s>
-                  </p>
-                  <p className="all__Price">$99.60</p>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </section>
@@ -143,3 +78,80 @@ function Smart() {
 }
 
 export default Smart;
+
+// <SwiperSlide>
+// <div className="smart_card">
+//   <div className="smart__img">
+//     <img src={img} alt="NPET K10 Wired Keyboard" />
+//     <button>
+//       <p>-30%</p>
+//     </button>
+//   </div>
+//   <div className="smart__text">
+//     <p>NPET K10 Wired Gaming Keyboard</p>
+//     <div className="prices">
+//       <p className="all__Price">
+//         <s>$49.00</s>
+//       </p>
+//       <p className="all__Price">$34.30</p>
+//     </div>
+//   </div>
+// </div>
+// </SwiperSlide>
+// <SwiperSlide>
+// <div className="smart_card">
+//   <div className="smart__img">
+//     <img src={img} alt="Apple Watch" />
+//     <button>
+//       <p>-20%</p>
+//     </button>
+//   </div>
+//   <div className="smart__text">
+//     <p>Apple Watch Series 7</p>
+//     <div className="prices">
+//       <p className="all__Price">
+//         <s>$289.00</s>
+//       </p>
+//       <p className="all__Price">$231.20</p>
+//     </div>
+//   </div>
+// </div>
+// </SwiperSlide>
+// <SwiperSlide>
+// <div className="smart_card">
+//   <div className="smart__img">
+//     <img src={img} alt="Apple MacBook" />
+//     <button>
+//       <p>-25%</p>
+//     </button>
+//   </div>
+//   <div className="smart__text">
+//     <p>Apple 2022 MacBook Air M2</p>
+//     <div className="prices">
+//       <p className="all__Price">
+//         <s>$950.22</s>
+//       </p>
+//       <p className="all__Price">$712.66</p>
+//     </div>
+//   </div>
+// </div>
+// </SwiperSlide>
+// <SwiperSlide>
+// <div className="smart_card">
+//   <div className="smart__img">
+//     <img src={img} alt="Samsung Watch" />
+//     <button>
+//       <p>-17%</p>
+//     </button>
+//   </div>
+//   <div className="smart__text">
+//     <p>Samsung Titan Smart Watch</p>
+//     <div className="prices">
+//       <p className="all__Price">
+//         <s>$120.00</s>
+//       </p>
+//       <p className="all__Price">$99.60</p>
+//     </div>
+//   </div>
+// </div>
+// </SwiperSlide>

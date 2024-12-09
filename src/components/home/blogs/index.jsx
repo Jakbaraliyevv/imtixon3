@@ -8,10 +8,6 @@ import { VscSaveAll } from "react-icons/vsc";
 import naushnik from "../../../img/airpods.png";
 import siniq from "../../../img/siniq.png";
 import meta from "../../../img/meta.png";
-import blog1 from "../../../img/blog1.svg";
-import blog2 from "../../../img/blog2.svg";
-import blog3 from "../../../img/blog3.svg";
-import blog4 from "../../../img/blog4.svg";
 function Blogs() {
   return (
     <section className="blogs">
