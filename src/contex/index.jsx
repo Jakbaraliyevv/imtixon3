@@ -5,7 +5,7 @@ const ShopAppContext = createContext({});
 
 const intialState = {
   data: JSON.parse(localStorage.getItem("shop")) || [],
-  liked: JSON.parse(localStorage.getItem("likes")) || [],
+  liked: [],
 };
 const notify = notificationApi();
 
@@ -26,24 +26,24 @@ const reduser = (state, { type, value, delID, countID, value__like }) => {
       break;
 
     case "liked_add": {
-      const exists = state.liked.find((item) => item.id === value__like.id);
-      let updatedData;
+      let updatedData = [
+        ...state.liked,
+        { ...value__like, isLiked: true, count: 1 },
+      ];
+      // POST so'rovi yuborish (yangi element qo'shish uchun)
+      fetch(`http://localhost:5000/products/${value__like.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...value__like,
+          isLiked: !value__like.isLiked,
+          count: 1,
+        }),
+      });
 
-      if (exists) {
-        updatedData = state.liked.map((item) =>
-          item.id === value__like.id
-            ? { ...item, isLiked: !item.isLiked }
-            : item
-        );
-      } else {
-        updatedData = [
-          ...state.liked,
-          { ...value__like, isLiked: true, count: 1 },
-        ];
-      }
-
-      localStorage.setItem("likes", JSON.stringify(updatedData));
-
+      // Yangilangan holatni qaytarish
       return { ...state, liked: updatedData };
     }
 

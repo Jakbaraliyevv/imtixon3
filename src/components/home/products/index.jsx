@@ -11,12 +11,16 @@ function Products() {
   const { data, loading, error } = useAxios({ url: "products" });
   const { state, dispatch } = useContext(ShopAppContext);
 
+  // console.log(state.liked. ,"state")
+
   const handleLike = (value) => {
-    const isLiked = state.liked.some((item) => item.id === value.id);
+    const isLiked = state.liked.find((item) => item.id === value.id);
     if (!isLiked) {
+      console.log(value.isLiked, "1");
       dispatch({ type: "liked_add", value__like: value });
     } else {
       dispatch({ type: "liked_add", value__like: value });
+      console.log(value.isLiked, "5");
     }
   };
 
@@ -33,12 +37,16 @@ function Products() {
               <div className="card__img">
                 <img src={value.image} alt="" />
 
-                <button onClick={() => handleLike(value)}>
+                <button>
                   {value.isLiked ? (
-                    <HeartFilled style={{ color: "red", fontSize: "24px" }} />
+                    <HeartFilled
+                      style={{ color: "red", fontSize: "24px" }}
+                      onClick={() => handleLike(value)}
+                    />
                   ) : (
                     <HeartOutlined
                       style={{ color: "gray", fontSize: "24px" }}
+                      onClick={() => handleLike(value)}
                     />
                   )}
                 </button>

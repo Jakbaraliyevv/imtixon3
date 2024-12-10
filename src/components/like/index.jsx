@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ShopAppContext } from "../../contex";
 import { FaRegHeart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,16 +6,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../home/footer";
 import Header from "../home/header";
+import { HeartFilled } from "@ant-design/icons";
 
 function Like() {
   const { state, dispatch } = useContext(ShopAppContext);
-
+  const [likedIt, setLikedIt] = useState([]);
   const navi = useNavigate();
+  useEffect(() => {
+    fetch("http://localhost:5000/products")
+      .then((res) => res.json())
+      .then((data) => setLikedIt(data));
+  }, []);
 
   const navigete_button = () => {
     navi("/");
   };
-
   const handleLike = (productId) => {
     dispatch({
       type: "TOGGLE_LIKE",
@@ -26,19 +31,24 @@ function Like() {
   return (
     <>
       <Header />
-
-      {state.liked.length ? (
+      {likedIt.length ? (
         <section className="like">
           <div className="container">
             <div className="products__middle">
-              {state.liked.map((value) => {
+              {likedIt.map((value) => {
                 if (value.isLiked) {
                   return (
                     <div className="card" key={value.id}>
                       <div className="card__img">
                         <img src={value.image} alt={value.title} />
                         <button onClick={() => handleLike(value.id)}>
-                          <FaRegHeart className="heart" />
+                          {value.isLiked ? (
+                            <HeartFilled
+                              style={{ color: "red", fontSize: "24px" }}
+                            />
+                          ) : (
+                            <FaRegHeart className="heart" />
+                          )}
                         </button>
                       </div>
                       <Link to={`/products/${value.id}`} className="card__text">
@@ -57,7 +67,7 @@ function Like() {
                     </div>
                   );
                 }
-                return null; // Agar isLiked false bo'lsa, hech narsa ko'rsatilmaydi
+                return null;
               })}
             </div>
           </div>
