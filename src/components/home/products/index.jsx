@@ -1,36 +1,49 @@
-import React from "react";
+import { HeartFilled } from "@ant-design/icons";
+import { HeartOutlined } from "@ant-design/icons";
+
+import React, { useContext } from "react";
 import "./products.scss";
-import iphone from "../../../img/iphone.png";
-// Iconlar
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FaRegHeart } from "react-icons/fa";
-import left from "../../../img/left.png";
+import { ShopAppContext } from "../../../contex";
 import useAxios from "../../../hooks/useAxios";
 import { Link } from "react-router-dom";
+
 function Products() {
   const { data, loading, error } = useAxios({ url: "products" });
+  const { state, dispatch } = useContext(ShopAppContext);
 
-  // const products = data.find((item) => item.products)?.products || [];
+  const handleLike = (value) => {
+    const isLiked = state.liked.some((item) => item.id === value.id);
+    if (!isLiked) {
+      dispatch({ type: "liked_add", value__like: value });
+    } else {
+      dispatch({ type: "liked_add", value__like: value });
+    }
+  };
 
-  // console.log(products);
   return (
     <section className="products">
       <div className="container">
         <div className="products__top">
           <h2>New Products</h2>
-          <a href="#">View all </a>
+          <a href="#">View all</a>
         </div>
         <div className="products__middle">
           {data.map((value) => (
             <div className="card" key={value.id}>
-              <Link to={`/products/${value.id}`} className="card__img">
+              <div className="card__img">
                 <img src={value.image} alt="" />
-                <button>
-                  <FaRegHeart className="heart" />
+
+                <button onClick={() => handleLike(value)}>
+                  {value.isLiked ? (
+                    <HeartFilled style={{ color: "red", fontSize: "24px" }} />
+                  ) : (
+                    <HeartOutlined
+                      style={{ color: "gray", fontSize: "24px" }}
+                    />
+                  )}
                 </button>
-              </Link>
-              <div className="card__text">
+              </div>
+              <Link to={`/products/${value.id}`} className="card__text">
                 <h3>{value.title}</h3>
                 <div className="reitin">
                   <h4>
@@ -38,55 +51,12 @@ function Products() {
                     <span>{value.dollar}</span>
                   </h4>
                   <button>
-                    <FontAwesomeIcon icon={faStar} className="star" />
                     <p>{value.rate}</p>
                   </button>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
-        </div>
-        <div className="products__bottom">
-          <div className="left">
-            <div className="left_img">
-              <h3>
-                Iphone <span>15 Series</span>
-              </h3>
-
-              <img src={iphone} alt="" />
-            </div>
-            <div className="left_text">
-              <div className="text__btn">
-                <button>
-                  <p>8</p>
-                  <p>Days</p>
-                </button>
-                <button>
-                  <p>8</p>
-                  <p>Days</p>
-                </button>
-                <button>
-                  <p>8</p>
-                  <p>Days</p>
-                </button>
-                <button>
-                  <p>8</p>
-                  <p>Days</p>
-                </button>
-              </div>
-
-              <h3>It feels good to be the first</h3>
-              <p>
-                Get ready for the future of smartphones.Experience innovation
-                like never before. Stay tuned for the big iPhone 15 pre-sale.
-              </p>
-
-              <button>Register Now</button>
-            </div>
-          </div>
-          <div className="right">
-            <img src={left} alt="" />
-          </div>
         </div>
       </div>
     </section>

@@ -7,11 +7,7 @@ import { FaRegHeart } from "react-icons/fa";
 import useAxios from "../../../hooks/useAxios";
 import { Link } from "react-router-dom";
 function Salares() {
-  const { data } = useAxios({ url: "seleres" });
-
-  // const seleres = data.find((item) => item.seleres)?.seleres || [];
-
-  // console.log(seleres);
+  const { data } = useAxios({ url: "products" });
 
   return (
     <section className="products">
@@ -23,13 +19,13 @@ function Salares() {
         <div className="products__middle">
           {data.map((value) => (
             <div className="card" key={value.id}>
-              <Link to={`/seleres/${value.id}`} className="card__img">
+              <div className="card__img">
                 <img src={value.image} alt="" />
                 <button>
                   <FaRegHeart className="heart" />
                 </button>
-              </Link>
-              <div className="card__text">
+              </div>
+              <Link to={`/products/${value.id}`} className="card__text">
                 <h3>{value.title}</h3>
                 <div className="reitin">
                   <h4>
@@ -41,7 +37,7 @@ function Salares() {
                     <p>{value.rate}</p>
                   </button>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>

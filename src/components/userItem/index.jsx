@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import Header from "../home/header";
@@ -8,15 +8,15 @@ import "./item.scss";
 import { FaRegStar } from "react-icons/fa";
 import { FaBuffer } from "react-icons/fa";
 import { TbFlagStar } from "react-icons/tb";
-import big__img from "../../img/big__img.png";
 import { FaBabyCarriage } from "react-icons/fa";
+import { ShopAppContext } from "../../contex";
 
 function UserItem() {
   const { id } = useParams();
 
-  const { data, loading, error } = useAxios({ url: `products/${id}` });
+  const { data } = useAxios({ url: `products/${id}` });
 
-  console.log(data);
+  const { dispatch } = useContext(ShopAppContext);
 
   return (
     <>
@@ -95,7 +95,13 @@ function UserItem() {
                     last price<s>$ 1410,87</s>
                   </p>
 
-                  <button>Add to cart</button>
+                  <button
+                    onClick={() => {
+                      dispatch({ type: "add", value: data });
+                    }}
+                  >
+                    Add to cart
+                  </button>
                 </div>
               </div>
             </div>

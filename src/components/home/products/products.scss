@@ -43,13 +43,14 @@
     border-radius: 8px;
     background: #ffffff;
     box-shadow: -2px 2px 15px -1px #7171711f;
+    position: relative;
+
     .card__img {
       display: flex;
       flex-direction: column;
       align-items: center;
       border-bottom: 1px solid #b4b4b4;
       padding-bottom: 25px;
-      position: relative;
       img {
         width: 100%;
         height: 200px;

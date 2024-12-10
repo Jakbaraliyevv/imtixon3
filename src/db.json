@@ -101,6 +101,8 @@
   "products": [
     {
       "id": "14",
+      "isLiked": false,
+      "count": 1,
       "title": "Iphone 14 promax 256 gig",
       "brand": "Apple",
       "model": "Macbook Pro",
@@ -118,6 +120,8 @@
     },
     {
       "id": "15",
+      "count": 1,
+      "isLiked": false,
       "title": "Blackmagic Design Pocket Cinema Camera 6K Pro (Canon EF)",
       "newPrice": 2535,
       "dollar": "$",
@@ -136,6 +140,8 @@
     },
     {
       "id": "16",
+      "count": 1,
+      "isLiked": false,
       "title": "SAMSUNG Galaxy S24 Ultra Cell Phone,256 GB",
       "newPrice": 1018,
       "dollar": "$",
@@ -154,6 +160,8 @@
     },
     {
       "id": "17",
+      "count": 1,
+      "isLiked": false,
       "title": "VR VisionTech X1",
       "newPrice": 1399,
       "brand": "Apple",
@@ -173,6 +181,8 @@
   "seleres": [
     {
       "id": "18",
+      "count": 1,
+      "isLiked": false,
       "title": "EchoX Pro H900",
       "newPrice": 93.9,
       "dollar": "$",
@@ -191,6 +201,9 @@
     },
     {
       "id": "19",
+      "count": 1,
+      "isLiked": false,
+
       "title": "Play Station 4 Pro 1Tb",
       "newPrice": 980,
       "dollar": "$",
@@ -209,6 +222,8 @@
     },
     {
       "id": "20",
+      "count": 1,
+      "isLiked": false,
       "title": "Apple MacBook Air 15 w/ Touch ID (2023) ",
       "newPrice": 118,
       "dollar": "$",
@@ -227,6 +242,8 @@
     },
     {
       "id": "21",
+      "count": 1,
+      "isLiked": false,
       "title": "Airpods pro2",
       "newPrice": 274.04,
       "dollar": "$",

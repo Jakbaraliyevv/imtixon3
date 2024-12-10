@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/home";
 import Korzina from "../pages/shop";
 import UserItem from "../components/userItem";
-import UserPRoduct from "../components/userProduct";
+import Like from "../components/like";
 
 const Root = createBrowserRouter([
   {
@@ -15,12 +15,13 @@ const Root = createBrowserRouter([
   },
 
   {
+    path: "/like",
+    element: <Like />,
+  },
+
+  {
     path: "/products/:id",
     element: <UserItem />,
-  },
-  {
-    path: "/seleres/:id",
-    element: <UserPRoduct />,
   },
 ]);
 
