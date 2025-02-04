@@ -11,8 +11,6 @@ function Products() {
   const { data, loading, error } = useAxios({ url: "products" });
   const { state, dispatch } = useContext(ShopAppContext);
 
-  // console.log(state.liked. ,"state")
-
   const handleLike = (value) => {
     const isLiked = state.liked.find((item) => item.id === value.id);
     if (!isLiked) {

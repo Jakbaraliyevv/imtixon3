@@ -21,11 +21,18 @@ function Like() {
   const navigete_button = () => {
     navi("/");
   };
-  const handleLike = (productId) => {
-    dispatch({
-      type: "TOGGLE_LIKE",
-      payload: productId,
-    });
+  const handleLike = (product) => {
+    if (product.isLiked) {
+      dispatch({
+        type: "liked_remove",
+        value__like: product,
+      });
+    } else {
+      dispatch({
+        type: "liked_add",
+        value__like: product,
+      });
+    }
   };
 
   return (
@@ -41,7 +48,7 @@ function Like() {
                     <div className="card" key={value.id}>
                       <div className="card__img">
                         <img src={value.image} alt={value.title} />
-                        <button onClick={() => handleLike(value.id)}>
+                        <button onClick={() => handleLike(value)}>
                           {value.isLiked ? (
                             <HeartFilled
                               style={{ color: "red", fontSize: "24px" }}

@@ -15,7 +15,7 @@ function UserItem() {
   const { id } = useParams();
 
   const { data } = useAxios({ url: `products/${id}` });
-
+  console.log(data, "dataID");
   const { dispatch } = useContext(ShopAppContext);
 
   return (

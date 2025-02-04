@@ -11,26 +11,31 @@ const notify = notificationApi();
 
 const reduser = (state, { type, value, delID, countID, value__like }) => {
   switch (type) {
-    case "add":
-      {
-        const findData = state.data.find((item) => item.id === value.id);
-        if (!findData) {
-          const newData = [...state.data, value];
-          localStorage.setItem("shop", JSON.stringify(newData));
-          notify({ type: "add" });
-          return { ...state, data: newData };
-        } else {
-          alert("Bu tovar korzinaga qoshilgan");
-        }
+    case "add": {
+      const findData = state.data?.find((item) => item.id === value.id);
+      if (!findData) {
+        const newData = [
+          ...state.data,
+          {
+            ...value,
+            userPrice: value.newPrice,
+          },
+        ];
+        localStorage.setItem("shop", JSON.stringify(newData));
+        notify({ type: "add" });
+        return { ...state, data: newData };
+      } else {
+        notify({ type: "cardAdd" });
+        return state;
       }
-      break;
+    }
 
     case "liked_add": {
       let updatedData = [
         ...state.liked,
         { ...value__like, isLiked: true, count: 1 },
       ];
-      // POST so'rovi yuborish (yangi element qo'shish uchun)
+
       fetch(`http://localhost:5000/products/${value__like.id}`, {
         method: "PATCH",
         headers: {
@@ -41,15 +46,48 @@ const reduser = (state, { type, value, delID, countID, value__like }) => {
           isLiked: !value__like.isLiked,
           count: 1,
         }),
-      });
+      })
+        .then((response) => response.json())
+        .then(() => {
+          notify({ type: "addToLike" });
+        })
+        .catch((error) => {
+          console.error("Error updating product:", error);
+        });
 
-      // Yangilangan holatni qaytarish
       return { ...state, liked: updatedData };
+    }
+
+    case "liked_remove": {
+      const updatedLiked = state.liked.filter(
+        (item) => item.id !== value__like.id
+      );
+
+      fetch(`http://localhost:5000/products/${value__like.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...value__like,
+          isLiked: false,
+        }),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          notify({ type: "removeFromLike" });
+        })
+        .catch((error) => {
+          console.error("Error updating product:", error);
+        });
+
+      return { ...state, liked: updatedLiked };
     }
 
     case "delet":
       const filterData = state.data.filter((item) => item.id !== delID);
       localStorage.setItem("shop", JSON.stringify(filterData));
+      notify({ type: "deletCard" });
       return { ...state, data: filterData };
 
     case "increment":
@@ -77,11 +115,6 @@ const reduser = (state, { type, value, delID, countID, value__like }) => {
       );
       localStorage.setItem("shop", JSON.stringify(state.data));
       return { ...state };
-
-    case "like":
-      const newLikeData = { ...state, [likeID]: !state[likeID] };
-      localStorage.setItem("like", JSON.stringify(newLikeData));
-      return newLikeData;
 
     default:
       return state;

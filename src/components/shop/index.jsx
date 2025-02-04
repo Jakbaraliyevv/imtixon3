@@ -7,11 +7,11 @@ function KorzinaComponents() {
   const useNAvigate = useNavigate();
 
   const { state, dispatch } = useContext(ShopAppContext);
-
-  let totalPrice = state.data.reduce(
-    (acc, value) => (acc += value.userPrice),
-    0
-  );
+  let totalPrice = state.data.reduce((acc, value) => {
+    // Tekshirishlar qo'shamiz, agar value.userPrice mavjud bo'lsa
+    const price = value.userPrice || 0; // Agar userPrice yo'q bo'lsa, 0 ga tenglashtiramiz
+    return acc + price;
+  }, 0);
 
   console.log(totalPrice);
 

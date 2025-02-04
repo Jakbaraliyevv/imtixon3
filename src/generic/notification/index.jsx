@@ -5,7 +5,25 @@ const notificationApi = () => {
       case "add":
         return notification.success({
           message: "Add card",
-          className: "custom-notification", // CSS sinfi qo‘shildi
+          className: "custom-notification",
+          duration: 1,
+        });
+      case "addToLike":
+        return notification.success({
+          message: "Add Liked",
+          className: "custom-notification",
+          duration: 1,
+        });
+      case "deletCard":
+        return notification.success({
+          message: "Delete Card",
+          className: "custom-notification",
+          duration: 1,
+        });
+      case "cardAdd":
+        return notification.success({
+          message: "Bu tovar korzinada bor",
+          className: "custom-notification",
           duration: 1,
         });
       default:

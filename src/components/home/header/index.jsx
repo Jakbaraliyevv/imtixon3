@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./header.scss";
 
 // Iconlar
@@ -65,7 +65,7 @@ function Header() {
             <img src={like} alt="" />
           </button>
           <button onClick={navigate_btn}>
-            <Badge count={state.data.length}>
+            <Badge count={state.data?.length}>
               <img src={shop} alt="" />
             </Badge>
           </button>
